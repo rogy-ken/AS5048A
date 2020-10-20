@@ -1,6 +1,7 @@
 #ifndef as5048_h
 #define as5048_h
 
+#include "Arduino.h"
 #include <SPI.h>
 
 class AS5048A

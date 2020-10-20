@@ -262,7 +262,7 @@ uint16_t AS5048A::read(uint16_t registerAddress)
 	SPI.transfer16(command);
 	digitalWrite(this->_cs, HIGH);
 
-	delay(this->esp32_delay);
+	delayMicroseconds(this->esp32_delay);
 
 	//Now read the response
 	digitalWrite(this->_cs, LOW);
@@ -345,7 +345,7 @@ uint16_t AS5048A::write(uint16_t registerAddress, uint16_t data)
 	SPI.transfer16(dataToSend);
 	digitalWrite(this->_cs, HIGH);
 
-	delay(this->esp32_delay);
+	delayMicroseconds(this->esp32_delay);
 
 	digitalWrite(this->_cs, LOW);
 	uint16_t response = SPI.transfer16(0x0000);
@@ -364,7 +364,7 @@ uint16_t AS5048A::write(uint16_t registerAddress, uint16_t data)
 void AS5048A::setDelay()
 {
 #if defined(ESP32) || defined(ARDUINO_ARCH_ESP32)
-	this->esp32_delay = 50;
+	this->esp32_delay = 1;
 	if (this->debug)
 	{
 		Serial.println("AS5048A working with ESP32");
